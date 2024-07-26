@@ -10,7 +10,7 @@ with app.py_context():
     Deck.querry.delete()
     flashCards = []
     decks = []
-    for User in users:
+    for users in User:
         for _ in range(3):
             deck_name =faker.deck_name()
             userid =faker.user_id()
@@ -34,7 +34,7 @@ with app.py_context():
     users = []
     for _ in range(10):
         username = faker.user_name()
-        email =f"{username}@{domain}"
+        email=faker.unique.email()
         password_hash =faker.password()
 
         existing_user = User.query.filter_by(email=email).first()
