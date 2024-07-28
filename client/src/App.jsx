@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Decks from './pages/Decks';  // Adjust the path according to your project structure
+import Decks from './pages/Decks'; 
 import './App.css';
 
 function App() {

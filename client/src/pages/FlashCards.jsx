@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const FlashCards = ({ flashCards = [] }) => {
@@ -10,6 +9,7 @@ const FlashCards = ({ flashCards = [] }) => {
           <tr>
             <th>Questions</th>
             <th>Answers</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>

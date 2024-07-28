@@ -38,6 +38,10 @@ const Decks = ({ flashCards }) => {
               <tr key={flashCard.id}>
                 <td>{flashCard.question}</td>
                 <td>{flashCard.answer}</td>
+                <td>
+                  <button>Update</button>
+                  <button>Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -48,4 +52,3 @@ const Decks = ({ flashCards }) => {
 };
 
 export default Decks;
-
