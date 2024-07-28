@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FlashCards from './pages/FlashCards';
+import Decks from './pages/Decks';  // Adjust the path according to your project structure
 import './App.css';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
 
   const fetchFlashCards = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/flashcards'); 
+      const response = await fetch('http://127.0.0.1:5000/flashcards');
       const data = await response.json();
       setFlashCards(data);
     } catch (error) {
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      <FlashCards flashCards={flashCards} />
+      <Decks flashCards={flashCards} />
     </div>
   );
 }
