@@ -1,22 +1,33 @@
-
 import React, { useState } from 'react';
 
-const FlashCards = ({ flashCards = [], addFlashCard }) => {
+const FlashCards = ({ flashCards = [], addFlashCard, updateFlashCard, deleteFlashCard }) => {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [editingId, setEditingId] = useState(null);
 
   const handleAddFlashCard = (e) => {
     e.preventDefault();
     if (question.trim() && answer.trim()) {
-      addFlashCard({ question, answer });
+      if (editingId !== null) {
+        updateFlashCard({ id: editingId, question, answer });
+        setEditingId(null);
+      } else {
+        addFlashCard({ question, answer });
+      }
       setQuestion('');
       setAnswer('');
     }
   };
 
+  const handleEditFlashCard = (flashCard) => {
+    setEditingId(flashCard.id);
+    setQuestion(flashCard.question);
+    setAnswer(flashCard.answer);
+  };
+
   return (
     <div>
-      <h2>Make your flashcard here.</h2>
+      <h2>{editingId ? 'Edit your flashcard' : 'Make your flashcard here.'}</h2>
       <form onSubmit={handleAddFlashCard}>
         <div>
           <label htmlFor="question">Question:</label>
@@ -38,7 +49,7 @@ const FlashCards = ({ flashCards = [], addFlashCard }) => {
             required
           />
         </div>
-        <button type="submit">Add Flashcard</button>
+        <button type="submit">{editingId ? 'Update Flashcard' : 'Add Flashcard'}</button>
       </form>
       <table>
         <thead>
@@ -55,8 +66,8 @@ const FlashCards = ({ flashCards = [], addFlashCard }) => {
                 <td>{flashCard.question}</td>
                 <td>{flashCard.answer}</td>
                 <td className="buttons">
-                  <button>Update</button>
-                  <button>Delete</button>
+                  <button onClick={() => handleEditFlashCard(flashCard)}>Update</button>
+                  <button onClick={() => deleteFlashCard(flashCard.id)}>Delete</button>
                 </td>
               </tr>
             ))

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Decks from './pages/Decks';
+import Decks from './pages/Decks'; 
 import './App.css';
 import Navbar from './Components/Navbar';
 import FlashCards from './pages/FlashCards';
@@ -28,6 +28,18 @@ function App() {
     setFlashCards([...flashCards, { ...newFlashCard, id: flashCards.length + 1 }]);
   };
 
+  const updateFlashCard = (updatedFlashCard) => {
+    setFlashCards(
+      flashCards.map((flashCard) =>
+        flashCard.id === updatedFlashCard.id ? updatedFlashCard : flashCard
+      )
+    );
+  };
+
+  const deleteFlashCard = (id) => {
+    setFlashCards(flashCards.filter((flashCard) => flashCard.id !== id));
+  };
+
   return (
     <Router>
       <div className="App">
@@ -35,7 +47,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/decks" element={<Decks flashCards={flashCards} />} />
-          <Route path="/flashcards" element={<FlashCards flashCards={flashCards} addFlashCard={addFlashCard} />} />
+          <Route path="/flashcards" element={<FlashCards flashCards={flashCards} addFlashCard={addFlashCard} updateFlashCard={updateFlashCard} deleteFlashCard={deleteFlashCard} />} />
           <Route path="/studysessions" element={<StudySessions />} />
         </Routes>
       </div>
@@ -44,6 +56,5 @@ function App() {
 }
 
 const Home = () => <div>Home Page</div>;
-// const StudySessions = () => <div>Study Sessions Page</div>;
 
 export default App;
