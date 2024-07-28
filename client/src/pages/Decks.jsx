@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const Decks = ({ flashCards }) => {
@@ -39,8 +40,7 @@ const Decks = ({ flashCards }) => {
                 <td>{flashCard.question}</td>
                 <td>{flashCard.answer}</td>
                 <td>
-                  <button>Update</button>
-                  <button>Delete</button>
+                  <h2>View the questions here.</h2>
                 </td>
               </tr>
             ))}

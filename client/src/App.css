@@ -1,5 +1,5 @@
 table {
-  width: 100%;
+  width: 50%;
   border-collapse: collapse;
 }
 
@@ -9,6 +9,6 @@ th, td {
   text-align: left;
 }
 
-button {
-  margin-right: 5px;
+.buttons {
+  margin-right: 50px;
 }
