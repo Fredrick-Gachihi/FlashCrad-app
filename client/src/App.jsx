@@ -1,11 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Decks from './pages/Decks'; 
+import Decks from './pages/Decks';
 import './App.css';
 import Navbar from './Components/Navbar';
 import FlashCards from './pages/FlashCards';
 import StudySessions from './pages/StudySesions';
+
 
 function App() {
   const [flashCards, setFlashCards] = useState([]);
@@ -45,7 +45,7 @@ function App() {
       <div className="App">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/Home" element={<Home />} />
           <Route path="/decks" element={<Decks flashCards={flashCards} />} />
           <Route path="/flashcards" element={<FlashCards flashCards={flashCards} addFlashCard={addFlashCard} updateFlashCard={updateFlashCard} deleteFlashCard={deleteFlashCard} />} />
           <Route path="/studysessions" element={<StudySessions />} />

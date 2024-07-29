@@ -28,6 +28,19 @@ api = Api(app)
 def index():
     return "<h1>Welcome to the Deck Portal API.</h1>"
 
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+    
+    user = User.query.filter_by(email=email).first()
+    if user and user.check_password(password):
+        access_token = create_access_token(identity={'id': user.id, 'username': user.username})
+        return jsonify({'token': access_token}), 200
+    else:
+        return jsonify({'error': 'Invalid email or password'}), 401
+
 @app.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
