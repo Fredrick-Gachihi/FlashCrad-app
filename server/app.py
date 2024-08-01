@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import os
 from flask import Flask, jsonify, request
 from flask_bcrypt import Bcrypt
@@ -98,21 +97,6 @@ def get_flashcards():
     return jsonify([flashcard.to_dict() for flashcard in flashcards]), 200
 
 
-@app.route('/flashcards/<int:id>', methods=['PUT'])
-def update_flashcard(id):
-    data = request.get_json()
-    flashcard = FlashCard.query.filter(FlashCard.flashcard_id == id).first()
-    if not flashcard:
-        return {'error': 'Flashcard not found'}, 404
-
-    flashcard.question = data.get('question', flashcard.question)
-    flashcard.answer = data.get('answer', flashcard.answer)
-    flashcard.deck_id = data.get('deck_id', flashcard.deck_id)
-    
-    db.session.commit()
-    return jsonify(flashcard.to_dict()), 200    
-
-
 @app.route('/flashcards/<int:id>', methods=['GET', 'DELETE'])
 def get_delete_flashcard_by_id(id):
     flashcard = FlashCard.query.filter(FlashCard.flashcard_id == id).first()
@@ -140,7 +124,7 @@ def create_studysession():
     )
     db.session.add(new_study_session)
     db.session.commit()
-    return jsonify({"message": "Study session created"}), 201
+    return jsonify(new_study_session.to_dict()), 201
 
 @app.route('/studysessions', methods=['GET'])
 def get_studysessions():
