@@ -14,3 +14,22 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+
+// const Navbar = ({ onLogout }) => {
+//   return (
+//     <nav>
+//       <ul>
+//         <li><Link to="/decks">Decks</Link></li>
+//         <li><Link to="/flashcards">Flashcards</Link></li>
+//         <li><Link to="/studysessions">Study Sessions</Link></li>
+//         <li><button onClick={onLogout}>Logout</button></li>
+//       </ul>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;

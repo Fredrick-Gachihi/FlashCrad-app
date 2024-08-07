@@ -2,7 +2,6 @@ import os
 from flask import Flask, jsonify, request
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
-from flask_restful import Api
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from models import db, Deck, User, StudySession, FlashCard
@@ -21,7 +20,7 @@ bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 migrate = Migrate(app, db)
 db.init_app(app)
-api = Api(app)
+ 
 
 @app.route("/")
 def index():
@@ -133,3 +132,5 @@ def get_studysessions():
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
+
+

@@ -61,3 +61,6 @@ with app.app_context():
     db.session.commit()
 
 print("Data created successfully.")
+
+
+2
